@@ -1,0 +1,79 @@
+ion-content {
+    --background: url("../../assets/images/login-bg.png") no-repeat 52% center/cover;
+    font-family: Montserrat;
+}
+
+.section-one {
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    img {
+        width: 40vw;
+    }
+
+    p {
+        font-size: 16px;
+        color: white;
+    }
+}
+
+.section-two {
+    height: 45vh;
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    ion-list {
+        background: transparent;
+        width: 100%;
+    }
+
+    span.label {
+        color: white;
+        font-size: 14px;
+    }
+
+    ion-item {
+        margin-bottom: 20px;
+        --background: #ffffffaa;
+        --highlight-color-focused: none;
+    }
+
+    ion-button.login {
+        width: 100%;
+        --border-radius: 50px;
+    }
+}
+
+.section-three {
+    height: 30vh;
+    padding: 0 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p.social-login {
+        color: white;
+    }
+
+    ion-button {
+        width: 100%;
+        min-height: 50px;
+        --border-radius: 10px;
+        --color: white;
+
+        &.google {
+            --background: #f82100;
+        }
+
+        &.facebook {
+            --background: #1a21e3;
+        }
+    }
+}

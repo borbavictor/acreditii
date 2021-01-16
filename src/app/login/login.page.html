@@ -1,0 +1,38 @@
+<ion-content>
+  <div class="section-one">
+    <img src="../../assets/images/logo.png">
+    <p>em dias melhores</p>
+  </div>
+
+  <div class="section-two">
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <ion-list lines="none">
+        <span class="label">Email</span>
+        <ion-item lines=“none”>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
+        <span class="label">Senha</span>
+        <ion-item lines=“none” class="no-lines">
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-button class="login" color="light" expand="block" fill="outline" size="large" (click)="login()"
+        [disabled]="!form.valid">
+        Acessar
+      </ion-button>
+    </form>
+  </div>
+
+  <div class="section-three">
+    <p class="social-login">ou acesse com</p>
+    <ion-button class="google" expand="block" fill="solid">
+      <ion-icon slot="start" name="logo-google"></ion-icon>
+      Google
+    </ion-button>
+    <ion-button class="facebook" expand="block" fill="solid">
+      <ion-icon slot="start" name="logo-facebook"></ion-icon>
+      Facebook
+    </ion-button>
+  </div>
+</ion-content>
