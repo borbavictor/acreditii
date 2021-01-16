@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content overflow-scroll="false">
-  <div class="empty-company-list" *ngIf="companyList.length == 0">
+  <div class="empty-company-list" *ngIf="list.length == 0">
     <div>
       Oops...<br>não foi possível encontrar as empresas!<br><br>
       <fa-icon [icon]="['fas', 'frown']" size="3x" slot="start"></fa-icon>
@@ -19,13 +19,14 @@
   </div>
 
   <div class="list-companys" *ngIf="showCompanys">
-    <ion-card *ngFor="let company of companyList">
+    <ion-card *ngFor="let company of list">
       <ion-card-header>
         <ion-grid>
           <ion-row>
-            <ion-card-subtitle class="company-name">{{company?.name}}</ion-card-subtitle>
+            <ion-card-subtitle class="company-name">{{company?.title}}</ion-card-subtitle>
+            <ion-card-subtitle class="company-name">{{company?.company}}</ion-card-subtitle>
             <ion-col size="12">
-              <ion-card-subtitle class="company-info company-date">
+              <!-- <ion-card-subtitle class="company-info company-date">
                 {{company?.date | date:'dd/MM/yyyy'}}
               </ion-card-subtitle>
               <ion-card-subtitle class="company-info company-hour">
@@ -34,7 +35,7 @@
               <ion-card-subtitle class="company-info company-place"
                 *ngIf="(company?.place.country != ' - ' && company?.place.country != '') && (company?.place.city != ' - ' && company?.place.city != '') && (company?.place.state != ' - ' && company?.place.state != '')">
                 {{company?.place.country}} - {{company?.place.city}}/{{company?.place.state}}
-              </ion-card-subtitle>
+              </ion-card-subtitle> -->
             </ion-col>
           </ion-row>
         </ion-grid>
