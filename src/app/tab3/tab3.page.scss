@@ -1,0 +1,82 @@
+ion-header {
+    background: blueviolet;
+
+    ion-toolbar {
+        --background: transparent;
+        --border-width: 0px;
+    }
+
+    ion-back-button {
+        color: #FFFFFF !important;
+    }
+
+    ion-buttons {
+        position: absolute;
+        right: 1em;
+        color: #FFFFFF;
+    }
+
+    ion-title {
+        position: relative;
+        font-size: 2em;
+        margin: 0.35em auto;
+        color: #FFFFFF;
+        font-weight: bolder;
+        text-align: center;
+    }
+}
+
+// button {
+// 	ion-badge {
+// 		position: absolute;
+// 		top: -0.2rem;
+// 		right: -0.2rem;
+// 		opacity: 0.9;
+
+// 		& ~ ion-icon {
+// 			margin-right: 1.2rem;
+// 		}
+// 	}
+// }
+
+ion-buttons button {
+    background: none;
+}
+
+.profile-font {
+    font: 38px bold;
+    font-family: Circular;
+}
+
+.font-info {
+    font-size: 12px;
+    font-weight: bold;
+    color: #d1dddf;
+}
+
+.shadow-card {
+    box-shadow: 0px -8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.style-item {
+    background-color: rgba(237, 239, 243, 1);
+    opacity: 0.7;
+    border-radius: 30px;
+}
+
+.font-labels {
+    font-size: 12px;
+}
+
+button {
+    background: none !important;
+}
+
+.select-text {
+    font-size: 14px !important;
+}
+
+.user-name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
