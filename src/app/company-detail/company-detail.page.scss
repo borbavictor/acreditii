@@ -1,33 +1,39 @@
 ion-header {
-  background: yellow;
-  ion-toolbar {
-    --background: transparent;
-    --border-width: 0px;
+  background: #ffc409;
+  
+  ion-button {
+    --color: black;
   }
 
-  ion-back-button {
-    color: black !important;
-  }
-
-  ion-buttons {
-    position: absolute;
-    left: 1em;
-  }
-
-  ion-title {
-    position: relative;
-    font-size: 2em;
-    margin: 0.35em auto;
-    color: black;
-    font-weight: bolder;
-    text-align: center;
+  ion-row {
+    margin: 0 2vh 0 2vh;
   }
 }
 ion-content {
   ion-row {
+    margin: 3vh 2vh 0 2vh;
     color: #FFFFFF;
     ion-label{
       font-weight: bold;
     }
   }
+}
+.company-title {
+  color: black;
+  font-weight: bolder;
+  font-size: 20px;
+}
+
+.company-name {
+  color: black;
+  font-weight: normal;
+  font-size: 20px;
+}
+
+.company-info {
+  color: black;
+  font-weight: normal;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
 }

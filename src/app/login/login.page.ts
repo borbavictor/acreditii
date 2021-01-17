@@ -17,8 +17,8 @@ export class LoginPage implements OnInit {
     private router: Router,
   ) {
     this.form = this.formBuilder.group({
-      email: ['yancorrea1995@gmail.com', [Validators.required, Validators.email]],
-      password: ['senha123', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
   }
 
@@ -32,16 +32,15 @@ export class LoginPage implements OnInit {
         console.log("res", res)
 
         const user = {
-          uid: "jebTQjN3KNYOMZYRnWd9QzjCwOA2",
+          uid: res.uid,
           email: res.email,
         }
-
-        this.router.navigate(['/tabs'], {
-          queryParams: { user: JSON.stringify(user) }
-        })
+        // this.storage.setItem('actualUser', JSON.stringify(user));
+        this.router.navigate(['/tabs']);
       })
       .catch((error) => {
-        console.log("error", error)
+        console.log("error", error);
+        // this.storage.setItem('actualUser', null);
       })
   }
 

@@ -1,0 +1,19 @@
+<ion-card>
+    <img style="max-height: 200px; overflow: hidden;"
+        [src]="user.profile_picture ? user.profile_picture : defaul_image" />
+    <ion-card-header>
+        <ion-card-subtitle>
+            <h5>{{username}}</h5>
+        </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+        <ion-row *ngIf="showButtons">
+            <ion-col size="6">
+                <ion-chip (click)="openProfile()" outline color="primary">
+                    <ion-icon name="person"></ion-icon>
+                    <ion-label>Perfil</ion-label>
+                </ion-chip>
+            </ion-col>
+        </ion-row>
+    </ion-card-content>
+</ion-card>

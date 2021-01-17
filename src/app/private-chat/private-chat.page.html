@@ -1,42 +1,47 @@
-<ion-header no-border translucent>
-  <div>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button mode="md" defaultHref="" routerLink="/tabs/tab2" routerDirection="back"></ion-back-button>
-      </ion-buttons>
-      <ion-grid class="detail-grid">
-        <ion-row>
-          <ion-col size="8">
-            <span class="detail-name">
-              Nome mentor/empresa
-            </span>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-toolbar>
-  </div>
+<ion-header>
+  <ion-button (click)="gotoChats()" fill="clear">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-card-subtitle class="company-title">
+          {{chat?.data?.counterName | slice:0:25}}{{chat?.data?.counterName?.length > 25? '...':''}}
+        </ion-card-subtitle>
+      </ion-col>
+      <ion-col size="12" class="company-info">
+        <ion-card-subtitle class="company-date">
+          {{chat?.data?.date.seconds * 1000 | date:'dd/MM/yyyy'}}
+        </ion-card-subtitle>
+        <ion-card-subtitle class="company-hour">
+          {{chat?.data?.date.seconds * 1000 | date:'H:mm' }}({{chat?.data?.date.seconds * 1000 | date:'zzz':'locale' }})
+        </ion-card-subtitle>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-header>
 
 <ion-content #chatContent fullscreen [style.background-size]="mobWidth + ' ' + mobHeight">
   <div class="container" id="chatcontainer" #chatcontainer>
     <div class="main" id="chatlist" #chatlist>
-      <div class="chat" *ngFor="let message of messages; let i = index">
+      <div class="chat" *ngFor="let message of chat?.data.messages; let i = index">
 
         <!-- TAG FOR DAYS -->
-        <div class="message-day" *ngIf="!sameDay(messages[i-1], message)">
-          {{message.timestamp | date:'EEEE, MMMM d, y'}}
+        <div class="message-day" *ngIf="!sameDay(chat?.data.messages[i-1], message)">
+          {{message.timestamp.seconds * 1000 | date:'EEEE, MMMM d, y'}}
         </div>
 
         <!-- TEXT MESSAGES -->
         <div [ngSwitch]="message.type">
           <div *ngSwitchCase="'text'">
-            <div class="me" *ngIf="message.user == user.id">
+            <div class="me" *ngIf="message.user == chat?.user.id">
               {{message.data}}<br *ngIf="message.data.length > 20">
-              <span class="message-detail">{{message.timestamp | date:'H:mm'}}</span>
+              <span class="message-detail">{{message.timestamp.seconds * 1000 | date:'H:mm'}}</span>
             </div>
-            <div class="you" *ngIf="message.user != user.id">
+            <div class="you" *ngIf="message.user != chat?.user.id" (click)="openUserInfo($event,message)">
+              <span class="name">{{message.userName? message.userName : message.user }}</span><br>
               {{message.data}}<br *ngIf="message.data.length > 20">
-              <span class="message-detail">{{message.timestamp | date:'H:mm'}}</span>
+              <span class="message-detail">{{message.timestamp.seconds * 1000 | date:'H:mm'}}</span>
             </div>
           </div>
 
@@ -59,11 +64,11 @@
       <ion-row>
         <ion-col size="10">
           <ion-textarea type="text" class="message-input" [(ngModel)]="msgInput" name="msgInput" id="msgInput"
-            name="msgInput" readonly="false" placeholder="Escreva aqui..." (keyup.enter)="sendPrivateMessage()">
+            readonly="false" placeholder="Escreva aqui..." (keyup.enter)="sendMessage()">
           </ion-textarea>
         </ion-col>
         <ion-col class="button-col" size="2">
-          <ion-button class="btn-send" (click)="sendPrivateMessage()">
+          <ion-button class="btn-send" (click)="sendMessage()">
             <ion-icon name="send"></ion-icon>
           </ion-button>
         </ion-col>

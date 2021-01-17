@@ -14,7 +14,7 @@ import { QueuePage } from '../queue/queue.page';
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <ion-button expand="full" shape="round" (click)="openQuestions()">Responder questões</ion-button>
+        <ion-button expand="full" color="warning" shape="round" (click)="openQuestions()">Responder questões</ion-button>
       </ion-col>
     </ion-row>
   </ion-content>

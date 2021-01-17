@@ -1,25 +1,48 @@
-// ************ HEADER ************ //
 ion-header {
-    background: transparent;
-    --background: transparent;
+    background: #ffc409;
 
-    ion-toolbar {
-        --background: transparent;
-        width: 95%;
-        background: yellow;
-        border-radius: 15px 15px 15px 15px;
-        margin: auto;
-        height: 100%;
-        padding-top: 0;
-        color: black;
-        max-height: 96px !important;
-        height: 96px !important;
-        margin-top: 20px;
+    ion-button {
+        --color: black;
+    }
+
+    ion-row {
+        margin: 0 2vh 0 2vh;
     }
 }
 
 ion-content {
-    --background: transparent;
+    ion-row {
+        margin: 3vh 2vh 0 2vh;
+        color: #FFFFFF;
+
+        ion-label {
+            font-weight: bold;
+        }
+    }
+}
+
+.company-title {
+    color: black;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+.company-name {
+    color: black;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+.company-info {
+    color: black;
+    font-weight: normal;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+
+ion-content {
+    background-color: #8800D6 !important;
     position: absolute;
 }
 
@@ -98,7 +121,8 @@ ion-content {
         align-self: flex-end;
         padding: 6px 10px 7px;
         border-radius: 15px 15px 0px;
-        background: #68d1fd;
+        background: #ffc409;
+        color: black;
         font-size: medium;
         line-height: 1.4;
     }
@@ -110,7 +134,8 @@ ion-content {
         align-self: flex-start;
         padding: 6px 10px 7px;
         border-radius: 15px 15px 15px 0px;
-        background: #817cb7;
+        background: #4F4F4F;
+        color: #FFFFFF;
         font-size: medium;
         line-height: 1.4;
 

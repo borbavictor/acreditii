@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CompanyDetailPage } from './company-detail.page';
+import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 const routes: Routes = [
   {
@@ -14,9 +15,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    IonicModule,
     CommonModule,
     FormsModule,
-    IonicModule,
+    ExploreContainerComponentModule,
     RouterModule.forChild(routes),
   ],
   declarations: [CompanyDetailPage]

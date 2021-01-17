@@ -12,7 +12,6 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [AppComponent],

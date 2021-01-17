@@ -11,7 +11,7 @@ import { QueuePage } from '../queue/queue.page';
   styleUrls: ['./company-detail.page.scss'],
 })
 export class CompanyDetailPage implements OnInit {
-  @Input() company: ICompany;
+  @Input() company: any;
 
   constructor(
     public modalController: ModalController,

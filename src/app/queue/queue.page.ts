@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class QueuePage implements OnInit {
   @Input() company: ICompany;
   npeople: number = 5;
+  npercent: number = 0;
   aborted: boolean = false;
   constructor(
     private router: Router,
@@ -26,6 +27,7 @@ export class QueuePage implements OnInit {
 
   verifyPeople() {
     if (!this.aborted) {
+      this.npercent = 1 - (this.npeople > 99 ? this.npeople / 100 : this.npeople / 10);
       setTimeout((d) => {
         console.log("🚀 ~ file: queue.page.ts ~ line 23 ~ QueuePage ~ setTimeout ~ ", this.npeople)
         if (this.npeople == 0) {

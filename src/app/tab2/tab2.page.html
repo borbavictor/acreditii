@@ -11,33 +11,63 @@
 </ion-header>
 
 <ion-content overflow-scroll="false">
-  <div class="empty-company-list" *ngIf="companyList.length == 0">
+  <div class="empty-company-list" *ngIf="chatList.length == 0">
     <div>
       Oops...<br>não foi possível encontrar as empresas!<br><br>
     </div>
   </div>
 
-  <div class="list-companys" *ngIf="showCompanys">
-    <ion-card *ngFor="let company of companyList">
-      <ion-card-header>
-        <ion-grid>
-          <ion-row>
-            <ion-card-subtitle class="company-name">{{company?.name}}</ion-card-subtitle>
-            <ion-col size="12">
-              <ion-card-subtitle class="company-info company-date">
-                {{company?.date | date:'dd/MM/yyyy'}}
-              </ion-card-subtitle>
-              <ion-card-subtitle class="company-info company-hour">
-                {{company?.registerPeriod.begin | date:'H:mm' }}-{{company?.registerPeriod.end | date:'H:mm' }}({{ company?.date | date:'zzz':'locale' }})
-              </ion-card-subtitle>
-              <ion-card-subtitle class="company-info company-place"
-                *ngIf="(company?.place.country != ' - ' && company?.place.country != '') && (company?.place.city != ' - ' && company?.place.city != '') && (company?.place.state != ' - ' && company?.place.state != '')">
-                {{company?.place.country}} - {{company?.place.city}}/{{company?.place.state}}
-              </ion-card-subtitle>
+  <ion-list *ngIf="!loadingChats">
+    <ion-item-sliding *ngFor="let chat of chatList">
+      <ion-item color="warning" (click)="viewChat(chat)">
+        <div class="each-item">
+          <span class="chat-name">{{chat.data.counterName}}</span>
+          <ion-row class="item-content" *ngIf="chat.data.messages.length > 0">
+            <ion-col class="left" size="8">
+              <span class="chat-last-message">
+                {{chat.data.messages[chat.data.messages.length-1].userName}}:
+                {{(chat.data.messages[chat.data.messages.length-1].data.length > 25)? (chat.data.messages[chat.data.messages.length-1].data | slice:0:25)+'..':(chat.data.messages[chat.data.messages.length-1].data)}}
+              </span>
+            </ion-col>
+            <ion-col class="right" size="4">
+              <span>
+                {{chat.data.messages[chat.data.messages.length-1].timestamp.seconds * 1000 | date:'H:mm'}}
+              </span>
             </ion-col>
           </ion-row>
-        </ion-grid>
-      </ion-card-header>
-    </ion-card>
+          <span class="chat-last-message" *ngIf="chat.data.messages.length == 0">
+            Nenhuma mensagem ainda.
+          </span>
+        </div>
+      </ion-item>
+      <!-- Item Slide Options -->
+      <ion-item-options>
+        <ion-item-option color="danger" (click)="exitGroup(chat)">
+          <ion-icon slot="top" name="trash"></ion-icon>
+          Sair
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <div *ngIf="loadingChats && chatList?.length > 0 ">
+    <ion-list>
+      <ion-item *ngFor="let skl of [0,1,2,3,4]">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

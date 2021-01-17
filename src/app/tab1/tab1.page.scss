@@ -11,9 +11,8 @@ ion-header {
 
     ion-title {
         position: relative;
-        font-size: 1em;
-        padding: 0px;
-        margin: 1em auto;
+        font-size: 1.5em;
+        margin: 0.35em auto;
         color: #FFFFFF;
         font-weight: bolder;
         text-align: center;
@@ -23,16 +22,7 @@ ion-content {
     background-color: #8800D6 !important;
 }
 ion-card-header {
-    background-color: yellow;
-}
-
-.pre-cover {
-    width: 100vw;
-}
-
-.cover {
-    width: 100vw;
-    height: 30vh;
+    background-color: #ffc409;
 }
 
 .empty-company-list {
@@ -49,56 +39,21 @@ ion-card-header {
         font-weight: bolder;
     }
 }
-
-.list-companys>ion-card {
-    background: whitesmoke;
-    // top: -70px;
-    margin-top: 30px;
-}
-
-.company-name {
+.company-title {
     color: black;
     font-weight: bolder;
+    font-size: 20px;
+}
+.company-name {
+    color: black;
+    font-weight: normal;
     font-size: 20px;
 }
 
 .company-info {
     color: black;
-    font-weight: 500;
-}
-
-.company-date {
-    margin-top: 1vh;    
-}
-
-.company-place {
-    font-size: 12px;
-}
-
-ion-card-content {
-    height: 60px;
-    padding: 0;    
-}
-
-.vertical-center {
-    display: flex !important;
-    align-content: center !important;
-    align-items: center !important;
-}
-
-::ng-deep ion-popover {
-    top: unset;
-    bottom: unset;
-    --top: unset;
-    --bottom: unset;
-    margin: auto;
-    --margin: auto;
-    --width: 80vw !important;
-    --height: auto !important;
-    --ion-backdrop-color: rgba(0, 0, 0, 0.8);
-
-    ion-backdrop {
-        --ion-backdrop-color: rgba(0, 0, 0, 0.8);
-        opacity: 0.8 !important;
-    }
+    font-weight: normal;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
 }

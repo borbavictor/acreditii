@@ -4,7 +4,7 @@
       <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
       </ion-buttons>
-      <ion-title>Balcões de Empresas</ion-title>
+      <ion-title>Balcões</ion-title>
       <ion-searchbar animated mode="ios" placeholder="Pesquisar" debounce="200"></ion-searchbar>
     </ion-toolbar>
   </div>
@@ -22,17 +22,18 @@
       <ion-card-header (click)="goToCompany(company)">
         <ion-grid>
           <ion-row>
-            <ion-card-subtitle class="company-name">{{company?.name}}</ion-card-subtitle>
             <ion-col size="12">
-              <ion-card-subtitle class="company-info company-date">
-                {{company?.date | date:'dd/MM/yyyy'}}
+              <ion-card-subtitle class="company-title">{{company?.title}}</ion-card-subtitle>
+            </ion-col>
+            <ion-col size="12">
+              <ion-card-subtitle class="company-name">{{company?.company}}</ion-card-subtitle>
+            </ion-col>
+            <ion-col size="12" class="company-info">
+              <ion-card-subtitle class="company-date">
+                {{company?.startDate.seconds * 1000 | date:'dd/MM/yyyy'}}
               </ion-card-subtitle>
-              <ion-card-subtitle class="company-info company-hour">
-                {{company?.registerPeriod.begin | date:'H:mm' }}-{{company?.registerPeriod.end | date:'H:mm' }}({{ company?.date | date:'zzz':'locale' }})
-              </ion-card-subtitle>
-              <ion-card-subtitle class="company-info company-place"
-                *ngIf="(company?.place.country != ' - ' && company?.place.country != '') && (company?.place.city != ' - ' && company?.place.city != '') && (company?.place.state != ' - ' && company?.place.state != '')">
-                {{company?.place.country}} - {{company?.place.city}}/{{company?.place.state}}
+              <ion-card-subtitle class="company-hour">
+                {{company?.startDate.seconds * 1000 | date:'H:mm' }}-{{company?.endDate.seconds * 1000 | date:'H:mm' }}({{ company?.startDate.seconds * 1000 | date:'zzz':'locale' }})
               </ion-card-subtitle>
             </ion-col>
           </ion-row>
