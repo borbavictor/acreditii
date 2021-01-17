@@ -4,14 +4,6 @@
       <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
       </ion-buttons>
-      <ion-buttons slot="end">
-        <button ion-button icon-only>
-          <ion-icon name="settings" style="zoom:2.0;"></ion-icon>
-        </button>
-        <button ion-button icon-only>
-          <ion-icon name="megaphone" style="zoom:2.0;"></ion-icon>
-        </button>
-      </ion-buttons>
       <ion-title>Perfil</ion-title>
     </ion-toolbar>
   </div>
@@ -23,67 +15,72 @@
       <img [src]="'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'">
     </ion-avatar>
     <ion-label>
-      <h2 class="user-name">{{userInfo.name ? userInfo.name : '-'}}</h2>
-      <ion-row>
-
-      </ion-row>
+      <h2 class="user-name">{{user?.name}}</h2>
     </ion-label>
   </ion-item>
 
   <ion-card style="border: none; width: 100%; margin: 0px;">
-    <!-- <ion-card-header>
-        <ion-card-subtitle><b>Atualizar dados</b></ion-card-subtitle>
-      </ion-card-header> -->
     <ion-card-content class="shadow-card ">
-      <ion-row>
-        <ion-col class="style-item" size="12">
-          <ion-item class="style-item" lines="none">
-            <ion-datetime slot="end" [(ngModel)]="userInfo.birth_date"></ion-datetime>
-            <ion-label class="font-labels">Data de Nascimento</ion-label>
-          </ion-item>
-        </ion-col>
-        <ion-col class="style-item" size="12">
-          <ion-item class="style-item" lines="none">
-            <ion-label class="font-labels">
-              <ion-icon name="logo-instagram" style="zoom:2.0;"></ion-icon>
-            </ion-label>
-            <ion-input [(ngModel)]="userInfo.instagram"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col class="style-item" size="12">
-          <ion-item class="style-item" lines="none">
-            <ion-label class="font-labels">
-              <ion-icon name="logo-facebook" style="zoom:2.0;"></ion-icon>
-            </ion-label>
-            <ion-input [(ngModel)]="userInfo.facebook"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col class="style-item" size="12">
-          <ion-item class="style-item" lines="none">
-            <ion-label class="font-labels">
-              <ion-icon name="logo-twitter" style="zoom:2.0;"></ion-icon>
-            </ion-label>
-            <ion-input [(ngModel)]="userInfo.twitter"></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col class="style-item" size="12">
-          <ion-item class="style-item" lines="none">
-            <ion-label class="font-labels">
-              Bio
-            </ion-label>
-            <ion-textarea [(ngModel)]="userInfo.bio" rows="4"></ion-textarea>
-          </ion-item>
-        </ion-col>
-        <ion-col size="12">
-          <ion-button style="border-radius: 30px;" expand="block" color="success">
-            Salvar
-          </ion-button>
-        </ion-col>
-        <ion-col size="12">
-          <ion-button expand="block" color="danger" style="border-radius: 30px;">
-            Sair</ion-button>
-        </ion-col>
-      </ion-row>
+      <form [formGroup]="userForm" (ngSubmit)="update()">
+        <ion-row>
+          <ion-col size="12">
+            <ion-item class="style-item" lines="none">
+              <ion-datetime slot="end" formControlName="birthDate"></ion-datetime>
+              <ion-label class="font-labels">Data de Nascimento</ion-label>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item class="style-item" lines="none">
+              <ion-label class="font-labels">
+                <ion-icon name="logo-linkedin" style="zoom:2.0;"></ion-icon>
+              </ion-label>
+              <ion-input formControlName="linkedin"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item class="style-item" lines="none">
+              <ion-label class="font-labels">
+                <ion-icon name="logo-instagram" style="zoom:2.0;"></ion-icon>
+              </ion-label>
+              <ion-input formControlName="instagram"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item class="style-item" lines="none">
+              <ion-label class="font-labels">
+                <ion-icon name="logo-facebook" style="zoom:2.0;"></ion-icon>
+              </ion-label>
+              <ion-input formControlName="facebook"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item class="style-item" lines="none">
+              <ion-label class="font-labels">
+                <ion-icon name="logo-twitter" style="zoom:2.0;"></ion-icon>
+              </ion-label>
+              <ion-input formControlName="twitter"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item class="style-item" lines="none">
+              <ion-label class="font-labels">
+                Bio
+              </ion-label>
+              <ion-textarea formControlName="bio" rows="4"></ion-textarea>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-button style="border-radius: 30px;" expand="block" color="success" (click)="update()">
+              Salvar
+            </ion-button>
+          </ion-col>
+          <ion-col size="12">
+            <ion-button expand="block" color="danger" style="border-radius: 30px;" (click)="logoff()">
+              Sair
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </form>
     </ion-card-content>
   </ion-card>
 </ion-content>
