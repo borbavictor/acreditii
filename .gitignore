@@ -9,3 +9,5 @@ plugins
 *.log
 *.DS_Store
 resources
+android
+www

@@ -31,7 +31,7 @@ export class QueuePage implements OnInit {
           this.npeople -= 1;
           this.verifyPeople();
         }
-      }, 1000);
+      }, 5000);
     }
   }
 
