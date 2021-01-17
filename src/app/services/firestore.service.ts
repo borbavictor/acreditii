@@ -21,6 +21,10 @@ export class FirestoreService {
 
   }
 
+  getIdToken() {
+    return this.authFire.credential;
+  }
+
   getUID() {
     return 'RtnbeXYABKS28NdJwuBll8UEHLQ2';
     // const user = await this.authFire.currentUser;

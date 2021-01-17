@@ -32,7 +32,7 @@ export class Tab2Page {
   loadChatMessages() {
     this.chats.forEach(it => {
       this.firestoreService.getChatMessages(it).subscribe(res => {
-        if (res.active == true || res.active == null)
+        if (res && (res.active == true || res.active == null))
           this.updateList(it, res);
         this.loadingChats = false;
       });
