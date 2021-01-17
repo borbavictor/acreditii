@@ -12,7 +12,7 @@ import { FirestoreService } from '../services/firestore.service';
 })
 export class PrivateChatPage {
   messages = [];
-  user = { id: 'RtnbeXYABKS28NdJwuBll8UEHLQ2' };
+  user = {};
   msgInput: string = "";
   mobHeight: any;
   mobWidth: any;
@@ -31,7 +31,6 @@ export class PrivateChatPage {
     this.mobHeight = (window.screen.height) + "px";
     this.mobWidth = (window.screen.width) + "px";
     this.firestoreService.getChatById(this.chatData.chatId).subscribe(chat => {
-      console.log("🚀 ~ file: private-chat.page.ts ~ line 34 ~ PrivateChatPage ~ this.firestoreService.getChatById ~ chat", chat)
       this.chat = {
         data: chat,
         id: this.chatData.chatId,

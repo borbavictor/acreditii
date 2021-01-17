@@ -1,7 +1,7 @@
-import { ModalController, PopoverController } from '@ionic/angular';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PopoverController } from '@ionic/angular';
 import { ICompany } from 'src/app/models/company.model';
-import { QueuePage } from '../queue/queue.page';
 
 @Component({
   selector: 'my-questiony-alert-component',
@@ -39,17 +39,23 @@ export class QuestionaryAlertComponent {
 })
 export class QuestionaryPage implements OnInit {
   @Input() company: ICompany;
-
+  private formQuestionary: FormGroup;
   constructor(
     private popoverController: PopoverController,
+    private formBuilder: FormBuilder,
   ) {
+    this.formQuestionary = this.formBuilder.group({
+      target: ['', Validators.required],
+      hobby: ['', Validators.required],
+      dream: ['', Validators.required],
+    });
   }
 
   ngOnInit() {
-    console.log("🚀 ~ file: company-detail.page.ts ~ line 48 ~ QuestionaryPage ~ ngOnInit ~ ngOnInit", this.company)
   }
 
-  async saveQuestions() {
-    this.popoverController.dismiss({ valid: true });
+  saveQuestions() {
+    console.log("🚀 ~ file: questionary.page.ts ~ line 62 ~ QuestionaryPage ~ saveQuestions ~ this.formQuestionary.value", this.formQuestionary.value);
+    this.popoverController.dismiss({ valid: true, answers: this.formQuestionary.value });
   }
 }

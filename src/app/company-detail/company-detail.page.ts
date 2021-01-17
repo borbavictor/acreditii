@@ -1,8 +1,10 @@
-import { ModalController, PopoverController } from '@ionic/angular';
 import { Component, Input, OnInit } from '@angular/core';
-import { ICompany } from 'src/app/models/company.model';
+import { Router } from '@angular/router';
+import { ModalController, PopoverController } from '@ionic/angular';
+import { v4 as uuidv4 } from 'uuid';
 import { QuestionaryAlertComponent, QuestionaryPage } from '../questionary/questionary.page';
 import { QueuePage } from '../queue/queue.page';
+import { FirestoreService } from '../services/firestore.service';
 
 
 @Component({
@@ -12,23 +14,21 @@ import { QueuePage } from '../queue/queue.page';
 })
 export class CompanyDetailPage implements OnInit {
   @Input() company: any;
+  answers: any = {};
 
   constructor(
-    public modalController: ModalController,
-    public popoverController: PopoverController,
+    private modalController: ModalController,
+    private popoverController: PopoverController,
+    private firestoreService: FirestoreService,
+    private router: Router,
   ) {
   }
 
   ngOnInit() {
-    console.log("🚀 ~ file: company-detail.page.ts ~ line 48 ~ CompanyDetailPage ~ ngOnInit ~ ngOnInit", this.company)
   }
 
   dismiss() {
-    // using the injected ModalController this page
-    // can "dismiss" itself and optionally pass back data
-    this.modalController.dismiss({
-      'dismissed': true
-    });
+    this.modalController.dismiss();
   }
 
   async openAlertQuestions() {
@@ -39,9 +39,8 @@ export class CompanyDetailPage implements OnInit {
       backdropDismiss: true,
     });
     modal.onDidDismiss()
-      .then((valid) => {
-        console.log("close alert")
-        if (valid) {
+      .then((data) => {
+        if (data.data.valid) {
           this.openQuestions();
         }
       });
@@ -55,15 +54,15 @@ export class CompanyDetailPage implements OnInit {
       backdropDismiss: true,
     });
     modal.onDidDismiss()
-      .then((valid) => {
-        console.log("close questionary")
-        if (valid) {
-          this.saveQuestions();
+      .then((data) => {
+        if (data.data.valid) {
+          this.saveQuestions(data.data.answers);
         }
       });
     return await modal.present();
   }
-  async saveQuestions() {
+  async saveQuestions(answers) {
+    console.log("🚀 ~ file: company-detail.page.ts ~ line 69 ~ CompanyDetailPage ~ saveQuestions ~ answers", answers)
     const modal = await this.popoverController.create({
       component: QueuePage,
       componentProps: { company: this.company },
@@ -71,10 +70,11 @@ export class CompanyDetailPage implements OnInit {
       backdropDismiss: true,
     });
     modal.onDidDismiss()
-      .then((valid) => {
-        console.log("close queue")
-        if (valid) {
+      .then((data) => {
+        if (data.data.valid) {
           this.modalController.dismiss();
+          this.firestoreService.enterOnGroupChat(uuidv4(), this.company);
+          // this.router.navigate(['/private-chat']);
         }
       });
     return await modal.present();

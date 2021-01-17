@@ -1,7 +1,6 @@
-import { ModalController, PopoverController } from '@ionic/angular';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 import { ICompany } from 'src/app/models/company.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-queue',
@@ -10,18 +9,15 @@ import { Router } from '@angular/router';
 })
 export class QueuePage implements OnInit {
   @Input() company: ICompany;
-  npeople: number = 5;
+  npeople: number = 3;
   npercent: number = 0;
   aborted: boolean = false;
   constructor(
-    private router: Router,
     private popoverController: PopoverController,
   ) {
   }
 
   ngOnInit() {
-    console.log("🚀 ~ file: company-detail.page.ts ~ line 48 ~ QuestionaryPage ~ ngOnInit ~ ngOnInit", this.company)
-    // while (this.npeople > 0) {
     this.verifyPeople();
   }
 
@@ -29,9 +25,7 @@ export class QueuePage implements OnInit {
     if (!this.aborted) {
       this.npercent = 1 - (this.npeople > 99 ? this.npeople / 100 : this.npeople / 10);
       setTimeout((d) => {
-        console.log("🚀 ~ file: queue.page.ts ~ line 23 ~ QueuePage ~ setTimeout ~ ", this.npeople)
         if (this.npeople == 0) {
-          this.router.navigate(['/private-chat']);
           this.popoverController.dismiss({ valid: true });
         } else {
           this.npeople -= 1;
@@ -43,6 +37,6 @@ export class QueuePage implements OnInit {
 
   abort() {
     this.aborted = true;
-    this.popoverController.dismiss();
+    this.popoverController.dismiss({ valid: false });
   }
 }

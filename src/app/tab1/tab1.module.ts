@@ -7,6 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import { CompanyDetailPageModule } from '../company-detail/company-detail.module';
+import { QuestionaryPageModule } from '../questionary/questionary.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { CompanyDetailPageModule } from '../company-detail/company-detail.module
     FormsModule,
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
-    CompanyDetailPageModule
+    CompanyDetailPageModule,
   ],
   declarations: [Tab1Page]
 })
