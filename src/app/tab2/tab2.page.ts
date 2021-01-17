@@ -22,7 +22,6 @@ export class Tab2Page {
   loadChatList() {
     this.loadingChats = true;
     this.chatDocs = this.firestoreService.getAsyncUserFields().subscribe(it => {
-      console.log("🚀 ~ file: tab2.page.ts ~ line 25 ~ Tab2Page ~ this.chatDocs=this.firestoreService.getAsyncUserFields ~ it", it)
       this.chats = it.chats;
       this.chatList = [];
       this.loadChatMessages();

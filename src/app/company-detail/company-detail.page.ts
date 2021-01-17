@@ -62,7 +62,6 @@ export class CompanyDetailPage implements OnInit {
     return await modal.present();
   }
   async saveQuestions(answers) {
-    console.log("🚀 ~ file: company-detail.page.ts ~ line 69 ~ CompanyDetailPage ~ saveQuestions ~ answers", answers)
     const modal = await this.popoverController.create({
       component: QueuePage,
       componentProps: { company: this.company },
@@ -73,7 +72,7 @@ export class CompanyDetailPage implements OnInit {
       .then((data) => {
         if (data.data.valid) {
           this.modalController.dismiss();
-          this.firestoreService.enterOnGroupChat(uuidv4(), this.company);
+          this.firestoreService.enterOnGroupChat(uuidv4(), this.company, answers);
           // this.router.navigate(['/private-chat']);
         }
       });

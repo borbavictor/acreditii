@@ -72,7 +72,6 @@ export class Tab1Page {
   loadCounters() {
     this.firestoreService.listAllCounters().subscribe(res => {
       this.companyList = res.docs.map(doc => doc.data());
-      console.log("list", this.companyList)
     })
   }
 }

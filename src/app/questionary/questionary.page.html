@@ -1,33 +1,30 @@
 <ion-content overflow-scroll="false">
-  <form [formGroup]="formQuestionary" (ngSubmit)="saveQuestions()">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="12">
-          <ion-item>
-            <ion-label class="ion-text-wrap" position="floating">Qual o seu objetivo para daqui 5 anos?</ion-label>
-            <ion-textarea formControlName="target"></ion-textarea>
-          </ion-item>
-        </ion-col>
-        <ion-col size="12">
-          <ion-item>
-            <ion-label class="ion-text-wrap" position="floating">Qual o seu hobby?</ion-label>
-            <ion-textarea formControlName="hobby"></ion-textarea>
-          </ion-item>
-        </ion-col>
-        <ion-col size="12">
-          <ion-item>
-            <ion-label class="ion-text-wrap" position="floating">Qual o seu maior sonho ultimamente?</ion-label>
-            <ion-textarea formControlName="dream"></ion-textarea>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="12">
-          <ion-button expand="full" color="warning" shape="round" (click)="saveQuestions()"
-            [disabled]="!formQuestionary.valid">
-            Responder</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label class="ion-text-wrap" position="floating">Qual o seu objetivo para daqui 5 anos?</ion-label>
+          <ion-textarea #target (input)="answerVerify()"></ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label class="ion-text-wrap" position="floating">Qual o seu hobby?</ion-label>
+          <ion-textarea #hobby (input)="answerVerify()"></ion-textarea>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label class="ion-text-wrap" position="floating">Qual o seu maior sonho ultimamente?</ion-label>
+          <ion-textarea #dream (input)="answerVerify()"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="full" color="warning" shape="round" (click)="saveQuestions()" [disabled]="!formValid">
+          Responder</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

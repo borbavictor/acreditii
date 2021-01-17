@@ -1,5 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { ICompany } from 'src/app/models/company.model';
 
@@ -39,23 +38,31 @@ export class QuestionaryAlertComponent {
 })
 export class QuestionaryPage implements OnInit {
   @Input() company: ICompany;
-  private formQuestionary: FormGroup;
+  @ViewChild("target", { static: false }) target?: ElementRef;
+  @ViewChild("hobby", { static: false }) hobby?: ElementRef;
+  @ViewChild("dream", { static: false }) dream?: ElementRef;
+  formValid: boolean = false;
   constructor(
     private popoverController: PopoverController,
-    private formBuilder: FormBuilder,
   ) {
-    this.formQuestionary = this.formBuilder.group({
-      target: ['', Validators.required],
-      hobby: ['', Validators.required],
-      dream: ['', Validators.required],
-    });
   }
 
   ngOnInit() {
   }
 
+  answerVerify() {
+    let target: string = this.target.nativeElement.value;
+    let hobby: string = this.hobby.nativeElement.value;
+    let dream: string = this.dream.nativeElement.value;
+    (target.length > 0 && hobby.length > 0 && dream.length > 0) ? this.formValid = true : this.formValid = false;
+  }
+
   saveQuestions() {
-    console.log("🚀 ~ file: questionary.page.ts ~ line 62 ~ QuestionaryPage ~ saveQuestions ~ this.formQuestionary.value", this.formQuestionary.value);
-    this.popoverController.dismiss({ valid: true, answers: this.formQuestionary.value });
+    let answers = {
+      target: this.target.nativeElement.value,
+      hobby: this.hobby.nativeElement.value,
+      dream: this.dream.nativeElement.value
+    }
+    this.popoverController.dismiss({ valid: true, answers });
   }
 }

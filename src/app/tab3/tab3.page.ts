@@ -35,12 +35,10 @@ export class Tab3Page {
     this.firestoreService.getUserInfo().subscribe(user => {
       this.user = user.data()
       this.userForm.patchValue(this.user)
-      console.log(this.user)
     })
   }
 
   update() {
-    console.log("user", this.userForm.value)
     this.firestoreService.updateUser(this.userForm.value)
   }
 

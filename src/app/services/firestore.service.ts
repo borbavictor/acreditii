@@ -27,8 +27,6 @@ export class FirestoreService {
 
   getUID() {
     return 'RtnbeXYABKS28NdJwuBll8UEHLQ2';
-    // const user = await this.authFire.currentUser;
-    // return user.uid;
   }
 
   listAllCounters() {
@@ -36,7 +34,6 @@ export class FirestoreService {
   }
 
   getAsyncUserFields(): any {
-    console.log("🚀 ~ file: firestore.service.ts ~ line 56 ~ FirestoreService ~ getAsyncUserFields ~ getUID", this.getUID())
     return this.fireStore.collection('users').doc(this.getUID()).valueChanges();
   }
 
@@ -46,14 +43,23 @@ export class FirestoreService {
   getChatById(chatId: string): any {
     return this.fireStore.collection('chats').doc(chatId).valueChanges();
   }
-  addUserToChat(chatId: string) {
+  addUserToChat(chatId: string, answers?: any) {
     let chatDocRef = this.fireStore.collection('chats').doc(chatId);
     chatDocRef.update({ users: firebase.default.firestore.FieldValue.arrayUnion(this.getUID()) });
     this.chatSubscription.unsubscribe();
+    //TODO
+    if (answers) {
+      const sendData1 = { data: 'Qual o seu objetivo para daqui 5 anos? ' + answers.target, type: 'text' }
+      const sendData2 = { data: 'Qual o seu hobby? ' + answers.hobby, type: 'text' }
+      const sendData3 = { data: 'Qual o seu maior sonho ultimamente? ' + answers.dream, type: 'text' }
+      this.sendMessage(this.chatData.user, chatId, sendData1)
+      this.sendMessage(this.chatData.user, chatId, sendData2)
+      this.sendMessage(this.chatData.user, chatId, sendData3)
+    }
     this.router.navigate(['private-chat']);
   }
 
-  enterOnGroupChat(chatId: string, company: any) {
+  enterOnGroupChat(chatId: string, company: any, answers?: any) {
     this.getUserInfo().subscribe(res => {
       this.user = {
         data: res.data(),
@@ -91,7 +97,7 @@ export class FirestoreService {
             doc.update({ chats: firebase.default.firestore.FieldValue.arrayUnion(chatId) }).then(el => {
               // send join message
               // this.sendMessage({ id: this.user.id, name: this.user.name, }, chatId, data);
-              this.addUserToChat(chatId);
+              this.addUserToChat(chatId, answers);
             });
           });
         }
