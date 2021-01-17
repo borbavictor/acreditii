@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { CompanyDetailPage } from '../company-detail/company-detail.page';
 import { ICompany } from '../models/company.model';
 
 @Component({
@@ -13,6 +16,9 @@ export class Tab1Page {
       id: '430t8h30vg8u34h0vuh3v',
       name: 'Nestle',
       date: new Date(),
+      banner: 'venha fazer parte desse time!',
+      mentor: 'João da Silva',
+      position: 'RH Supervisor',
       place: {
         country: 'Brasil',
         state: 'São Paulo',
@@ -29,6 +35,9 @@ export class Tab1Page {
       id: '094hg0v38hv38rhv03rhujrhpfiv',
       name: 'Jacto',
       date: new Date(),
+      banner: 'vamos crescer juntos!',
+      mentor: 'Marcos José',
+      position: 'RH',
       place: {
         country: 'Brasil',
         state: 'São Paulo',
@@ -42,7 +51,16 @@ export class Tab1Page {
       status: 'ACTIVE',
     }
   ];
-  constructor() {
+  constructor(
+    private router: Router,
+    public modalController: ModalController,
+  ) {
   }
-
+  async goToCompany(company) {
+    const modal = await this.modalController.create({
+      component: CompanyDetailPage,
+      componentProps: { company }
+    });
+    return await modal.present();
+  }
 }

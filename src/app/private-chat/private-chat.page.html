@@ -1,0 +1,73 @@
+<ion-header no-border translucent>
+  <div>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button mode="md" defaultHref="" routerLink="/tabs/tab2" routerDirection="back"></ion-back-button>
+      </ion-buttons>
+      <ion-grid class="detail-grid">
+        <ion-row>
+          <ion-col size="8">
+            <span class="detail-name">
+              Nome mentor/empresa
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+  </div>
+</ion-header>
+
+<ion-content #chatContent fullscreen [style.background-size]="mobWidth + ' ' + mobHeight">
+  <div class="container" id="chatcontainer" #chatcontainer>
+    <div class="main" id="chatlist" #chatlist>
+      <div class="chat" *ngFor="let message of messages; let i = index">
+
+        <!-- TAG FOR DAYS -->
+        <div class="message-day" *ngIf="!sameDay(messages[i-1], message)">
+          {{message.timestamp | date:'EEEE, MMMM d, y'}}
+        </div>
+
+        <!-- TEXT MESSAGES -->
+        <div [ngSwitch]="message.type">
+          <div *ngSwitchCase="'text'">
+            <div class="me" *ngIf="message.user == user.id">
+              {{message.data}}<br *ngIf="message.data.length > 20">
+              <span class="message-detail">{{message.timestamp | date:'H:mm'}}</span>
+            </div>
+            <div class="you" *ngIf="message.user != user.id">
+              {{message.data}}<br *ngIf="message.data.length > 20">
+              <span class="message-detail">{{message.timestamp | date:'H:mm'}}</span>
+            </div>
+          </div>
+
+          <!-- ENTER ROOM -->
+          <div *ngSwitchCase="'enter-room'">
+            <div class="system-message">
+              {{message.userName}} entrou
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="footer">
+  <ion-toolbar transparent>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <ion-textarea type="text" class="message-input" [(ngModel)]="msgInput" name="msgInput" id="msgInput"
+            name="msgInput" readonly="false" placeholder="Escreva aqui..." (keyup.enter)="sendPrivateMessage()">
+          </ion-textarea>
+        </ion-col>
+        <ion-col class="button-col" size="2">
+          <ion-button class="btn-send" (click)="sendPrivateMessage()">
+            <ion-icon name="send"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

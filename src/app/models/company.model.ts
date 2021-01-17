@@ -1,6 +1,9 @@
 export interface ICompany {
     id?: string,
     name?: string,
+    banner?: string,
+    mentor?: string,
+    position?: string,
     date?: Date,
     place?: {
         country?: string,
@@ -15,12 +18,14 @@ export interface ICompany {
         end?: Date,
     },
     status?: string,
-    banner?: string,
 }
 
 export class Company implements ICompany {
     id?: string;
     name?: string;
+    banner?: string;
+    mentor?: string;
+    position?: string;
     date?: Date;
     place?: {
         country?: string;
@@ -35,5 +40,4 @@ export class Company implements ICompany {
         end?: Date;
     };
     status?: string;
-    banner?: string;
 }

@@ -1,0 +1,33 @@
+ion-header {
+  background: yellow;
+  ion-toolbar {
+    --background: transparent;
+    --border-width: 0px;
+  }
+
+  ion-back-button {
+    color: black !important;
+  }
+
+  ion-buttons {
+    position: absolute;
+    left: 1em;
+  }
+
+  ion-title {
+    position: relative;
+    font-size: 2em;
+    margin: 0.35em auto;
+    color: black;
+    font-weight: bolder;
+    text-align: center;
+  }
+}
+ion-content {
+  ion-row {
+    color: #FFFFFF;
+    ion-label{
+      font-weight: bold;
+    }
+  }
+}

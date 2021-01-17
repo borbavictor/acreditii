@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
+    path: 'private-chat',
+    loadChildren: () => import('./private-chat/private-chat.module').then(m => m.PrivateChatPageModule)
+  },
+  {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
