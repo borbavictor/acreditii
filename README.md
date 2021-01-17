@@ -1,6 +1,6 @@
 # acreditii
 
-O Acreditti visa conectar jovens em busca de recolocação profissional ou do primeiro emprego.
+O **Acreditti** visa conectar jovens em busca de recolocação profissional ou do primeiro emprego.
 
 A ideia é transformar o processo tradicional de recrutamento, conectando esses jovens diretamente com executivos de grandes empresas, proporcionando um primeiro contato mais informal e desburocratisado, permitindo ao jovem apresentar todo seu potecial e quem sabe até ser encaminhado para um processo seletivo.
 
@@ -8,7 +8,7 @@ Por outro lado, a empresa poderá ser mais inclusiva socialmente, dando oportuni
 
 Além disso, ficará salvo para o jovem o feedback do executivo, para que ele possa se aprimorar e participar de outros processos seletivos.
 
-Acreditii em você, Acreditii em dias melhores, Acreditii no mundo... Simplesmente Acreditii!
+**Acreditii** em você, **Acreditii** em dias melhores, **Acreditii** no mundo... Simplesmente **Acreditii**!
 
 ## Tecnologias
 
